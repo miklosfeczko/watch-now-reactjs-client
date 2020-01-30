@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { About, Search, ItemDetail, SearchBar } from "./components";
-import "./App.scss";
+import React, { useState, useEffect } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { About, Search, ItemDetail, SearchBar } from "./components"
+import "./App.scss"
 
 
 function App() {
-  const [darkMode, setDarkMode] = useState(getInitialMode());
+  const [darkMode, setDarkMode] = useState(getInitialMode())
    useEffect(() => {
-     localStorage.setItem("dark", JSON.stringify(darkMode));
-   }, [darkMode]);
+     localStorage.setItem("dark", JSON.stringify(darkMode))
+   }, [darkMode])
 
   function getInitialMode() {
-      const savedMode = JSON.parse(localStorage.getItem("dark"));
-      return savedMode || false;
+      const savedMode = JSON.parse(localStorage.getItem("dark"))
+      return savedMode || false
   }
 
   return (
@@ -53,7 +53,7 @@ function App() {
         <Footer />
       </div>
     </Router>
-  );
+  )
 }
 
 const Home = () => (
@@ -64,8 +64,10 @@ const Home = () => (
 
 const Footer = () => (
   <footer id="footer">
-    <p>Made with ❤️ by Miklos Feczko</p>
+    <p>
+      Made with <span role="img" aria-label="heart">❤️</span> by Miklos Feczko
+    </p>
   </footer>
-);
+)
 
-export default App;
+export default App

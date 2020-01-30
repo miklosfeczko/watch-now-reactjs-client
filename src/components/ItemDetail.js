@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {api} from '../api/api'
-
-// const URL = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${match.params.id}&maxResults=50`;
+import React from "react"
+import {api} from "../api/api"
 
 class ItemDetail extends React.Component {
   state = {
@@ -10,25 +8,25 @@ class ItemDetail extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchItem();
-  };
+    this.fetchItem()
+  }
 
   fetchItem = async () => {
     const fetchItem = await fetch(
       `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${this.props.match.params.id}&maxResults=50&key=${api.key}`
-    );
-    const item = await fetchItem.json();
+    )
+    const item = await fetchItem.json()
     this.setState({ 
       item: item.items,
       loading: false
-     });
+     })
     console.log(item)
-  };
+  }
 
  
   render() {
 
-  let videoBlock;
+  let videoBlock
   if (this.props.match.params.id !== "undefined") {
      videoBlock = (
        <div className="video-container">
@@ -40,14 +38,14 @@ class ItemDetail extends React.Component {
            src={`https://www.youtube.com/embed/${this.props.match.params.id}`}
          />
        </div>
-     );
+     )
   } else videoBlock = (
     <div>
       ÜRES
     </div>
   )
 
-  const {loading, item} = this.state;
+  const {loading, item} = this.state
   return (
     <React.Fragment>
       {videoBlock}
@@ -70,9 +68,9 @@ class ItemDetail extends React.Component {
 
                 <div className="module-comment-text">
                   <div className="userName">
-                      <p>
-                        {item.snippet.topLevelComment.snippet.authorDisplayName}
-                      </p>
+                    <p>
+                      {item.snippet.topLevelComment.snippet.authorDisplayName}
+                    </p>
                   </div>
                   <div>
                     <time>
@@ -85,13 +83,18 @@ class ItemDetail extends React.Component {
                   </div>
 
                   <div className="comment">
-                    <p style={{fontSize: '.9rem'}}>
-                      {item.snippet.topLevelComment.snippet.textOriginal.toString().split("https://")[0]}
+                    <p style={{ fontSize: ".9rem" }}>
+                      {
+                        item.snippet.topLevelComment.snippet.textOriginal
+                          .toString()
+                          .split("https://")[0]
+                      }
                     </p>
                   </div>
                   <div className="like">
                     <p>
-                      👍🏻 {item.snippet.topLevelComment.snippet.likeCount}
+                      <span role="img" aria-label="thumbs up">👍🏻</span>{" "}
+                      {item.snippet.topLevelComment.snippet.likeCount}
                     </p>
                   </div>
                 </div>
@@ -100,8 +103,8 @@ class ItemDetail extends React.Component {
         </div>
       )}
     </React.Fragment>
-  );
+  )
 }
 }
 
-export default ItemDetail;
+export default ItemDetail

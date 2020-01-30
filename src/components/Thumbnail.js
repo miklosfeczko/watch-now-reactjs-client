@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 const Thumbnail = ({thumbnailData, channelOrVideo}) => {
 console.log(channelOrVideo)
@@ -7,6 +7,7 @@ console.log(channelOrVideo)
         <div className="movie__wrapper">
           <div className="image__wrapper">
             <img
+              alt="video thumbnails"
               src={thumbnailData.thumbnails.medium.url}
               style={{
                 borderRadius: channelOrVideo ? "15rem" : "0rem",
@@ -29,7 +30,7 @@ console.log(channelOrVideo)
           </div>
         </div>
     </React.Fragment>
-  ) : null;
+  ) : null
 }
 
-export default Thumbnail;
+export default Thumbnail

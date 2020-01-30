@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("")
 
   return (
     <div className="search-bar__container">
@@ -30,7 +30,7 @@ const SearchBar = () => {
         </Link>
       </form>
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar

@@ -1,17 +1,17 @@
-import React from "react";
-import {Link} from "react-router-dom";
-import youtube from '../api/youtube';
-import Thumbnail from './Thumbnail';
-import { api } from "../api/api";
+import React from "react"
+import {Link} from "react-router-dom"
+import youtube from "../api/youtube"
+import Thumbnail from "./Thumbnail"
+import { api } from "../api/api"
 
 
 class Search extends React.Component {
   state = {
     items: []
-  };
+  }
 
   componentDidMount() {
-    this.fetchItems();
+    this.fetchItems()
   }
 
   fetchItems = async () => {
@@ -23,32 +23,32 @@ class Search extends React.Component {
           key: `${api.key}`,
           q: `${this.props.match.params.searchTerm}`
         }
-      });
-      console.log(response);
-      this.setState({ items: response.data.items });
+      })
+      console.log(response)
+      this.setState({ items: response.data.items })
     } catch (error) {
       if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
+        console.log(error.response.data)
+        console.log(error.response.status)
+        console.log(error.response.headers)
       } else if (error.request) {
-        console.log(error.request);
+        console.log(error.request)
       } else {
-        console.log("Error", error.message);
+        console.log("Error", error.message)
       }
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.searchTerm !== this.props.match.params.searchTerm) {
-      this.fetchItems();
-    } else return;
+      this.fetchItems()
+    } else return
   }
 
   render() {
-    const { items } = this.state;
-    const { searchTerm } = this.props.match.params;
+    const { items } = this.state
+    const { searchTerm } = this.props.match.params
 
     return (
       <div>
@@ -66,8 +66,8 @@ class Search extends React.Component {
           </div>
         ))}
       </div>
-    );
+    )
   }
 }
 
-export default Search;
+export default Search
