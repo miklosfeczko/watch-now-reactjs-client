@@ -53,7 +53,7 @@ class Search extends React.Component {
     return (
       <div>
         {items.map(item => (
-          <div key={item.etag} className="asd">
+          <div key={item.etag} className="firstItemBorders">
             <Link
               to={`/search/${searchTerm}/${item.id.videoId}`}
               className="linkCustom"

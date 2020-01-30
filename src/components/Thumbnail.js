@@ -4,7 +4,7 @@ const Thumbnail = ({thumbnailData, channelOrVideo}) => {
 console.log(channelOrVideo)
   return thumbnailData && thumbnailData.title ? (
     <React.Fragment>
-        <div className="movie__wrapper">
+        <div className="video__wrapper">
           <div className="image__wrapper">
             <img
               alt="video thumbnails"
@@ -15,7 +15,7 @@ console.log(channelOrVideo)
               }}
             />
           </div>
-          <div className="movie__details">
+          <div className="video__details">
             <article>
               <h1
                 style={{
