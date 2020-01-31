@@ -7,7 +7,8 @@ import { api } from "../api/api"
 
 class Search extends React.Component {
   state = {
-    items: []
+    items: [],
+    loading: true
   }
 
   componentDidMount() {
@@ -15,6 +16,10 @@ class Search extends React.Component {
   }
 
   fetchItems = async () => {
+    this.setState({
+      items: [],
+      loading: true
+    })
     try {
       const response = await youtube.get("search", {
         params: {
@@ -25,7 +30,10 @@ class Search extends React.Component {
         }
       })
       console.log(response)
-      this.setState({ items: response.data.items })
+      this.setState({ 
+        items: response.data.items, 
+        loading: false
+      })
     } catch (error) {
       if (error.response) {
         console.log(error.response.data)
@@ -47,9 +55,23 @@ class Search extends React.Component {
   }
 
   render() {
-    const { items } = this.state
+    const { items, loading } = this.state
     const { searchTerm } = this.props.match.params
+    console.log(items)
 
+    if (items.length === 0 && loading) {
+      return (
+        <div>
+          Loading...
+        </div>
+      )
+    } else if (items.length === 0 && !loading) {
+      return (
+        <div>
+          No matches bruv.
+        </div>
+      )
+    }
     return (
       <div>
         {items.map(item => (
