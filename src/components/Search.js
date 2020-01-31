@@ -1,7 +1,8 @@
 import React from "react"
 import {Link} from "react-router-dom"
-import youtube from "../api/youtube"
 import Thumbnail from "./Thumbnail"
+import Loading from "./Loading"
+import youtube from "../api/youtube"
 import { api } from "../api/api"
 
 
@@ -61,9 +62,7 @@ class Search extends React.Component {
 
     if (items.length === 0 && loading) {
       return (
-        <div>
-          Loading...
-        </div>
+         <Loading />
       )
     } else if (items.length === 0 && !loading) {
       return (

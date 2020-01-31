@@ -1,5 +1,6 @@
 import React from "react"
 import {api} from "../api/api"
+import Loading from "./Loading"
 
 class ItemDetail extends React.Component {
   state = {
@@ -50,7 +51,7 @@ class ItemDetail extends React.Component {
     <React.Fragment>
       {videoBlock}
       {loading ? (
-        <div>loading...</div>
+        <Loading />
       ) : (
         <div>
           {item &&
@@ -93,7 +94,9 @@ class ItemDetail extends React.Component {
                   </div>
                   <div className="like">
                     <p>
-                      <span role="img" aria-label="thumbs up">👍🏻</span>{" "}
+                      <span role="img" aria-label="thumbs up">
+                        👍🏻
+                      </span>{" "}
                       {item.snippet.topLevelComment.snippet.likeCount}
                     </p>
                   </div>
