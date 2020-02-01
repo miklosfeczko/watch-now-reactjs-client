@@ -71,6 +71,7 @@ class Search extends React.Component {
         </div>
       )
     }
+
     return (
       <div>
         {items.map(item => (
@@ -82,7 +83,7 @@ class Search extends React.Component {
               <Thumbnail
                 thumbnailData={item.snippet}
                 channelOrVideo={item.id.channelId ? item.id.channelId : null}
-              />
+            />
             </Link>
           </div>
         ))}

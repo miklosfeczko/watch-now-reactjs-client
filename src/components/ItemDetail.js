@@ -5,7 +5,9 @@ import Loading from "./Loading"
 class ItemDetail extends React.Component {
   state = {
     item: [],
-    loading: true
+    loading: true,
+    error: null,
+    commentError: null
   }
 
   componentDidMount() {
@@ -17,39 +19,47 @@ class ItemDetail extends React.Component {
       `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${this.props.match.params.id}&maxResults=50&key=${api.key}`
     )
     const item = await fetchItem.json()
-    this.setState({ 
-      item: item.items,
-      loading: false
-     })
-    console.log(item)
+    if (!item.error) {
+      this.setState({
+        item: item.items,
+        loading: false,
+        error: null
+      })
+    } else if (item.error.code === 404){    
+      this.setState({
+        loading: false,
+        error: item.error.code
+      })
+    } else if (item.error.code === 403) {
+      this.setState({
+        loading: false,
+        commentError: item.error.code
+      })
+    }
   }
 
  
   render() {
-
   let videoBlock
   if (this.props.match.params.id !== "undefined") {
-     videoBlock = (
-       <div className="video-container">
-         <iframe
-           frameBorder="0"
-           height="100%"
-           width="100%"
-           title="Video Player"
-           src={`https://www.youtube.com/embed/${this.props.match.params.id}`}
-         />
-       </div>
-     )
-  } else videoBlock = (
-    <div>
-      ÜRES
-    </div>
-  )
+    videoBlock = (
+      <div className="video-container">
+        <iframe
+          frameBorder="0"
+          height="100%"
+          width="100%"
+          title="Video Player"
+          src={`https://www.youtube.com/embed/${this.props.match.params.id}`}
+        />
+      </div>
+    )
+  } 
 
-  const {loading, item} = this.state
+  const { loading, item, error, commentError } = this.state  
   return (
     <React.Fragment>
-      {videoBlock}
+      {error ? error : videoBlock}
+      { commentError ? commentError : null}
       {loading ? (
         <Loading />
       ) : (
