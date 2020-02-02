@@ -2,9 +2,6 @@ import React from "react"
 import {Link} from "react-router-dom"
 import Thumbnail from "./Thumbnail"
 import Loading from "./Loading"
-import youtube from "../api/youtube"
-import { api } from "../api/api"
-
 
 class Search extends React.Component {
   state = {
@@ -17,36 +14,24 @@ class Search extends React.Component {
   }
 
   fetchItems = async () => {
+    
     this.setState({
       items: [],
       loading: true
-    })
-    try {
-      const response = await youtube.get("search", {
-        params: {
-          part: "snippet",
-          maxResults: 10,
-          key: `${api.key}`,
-          q: `${this.props.match.params.searchTerm}`
-        }
-      })
-      console.log(response)
-      this.setState({ 
-        items: response.data.items, 
-        loading: false
-      })
-    } catch (error) {
-      if (error.response) {
-        console.log(error.response.data)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-      } else if (error.request) {
-        console.log(error.request)
-      } else {
-        console.log("Error", error.message)
+    })  
+      const { searchTerm } = this.props.match.params
+      const response = await fetch(`/search/${searchTerm}`)
+      const item = await response.json()
+      console.log(searchTerm)
+      console.log(item)
+      if (response.ok && !item.error) {
+        this.setState({
+          items: item.items,
+          loading: false
+        })
+      } else if (item.error) {
+        alert(item.error.message)
       }
-      console.log(error)
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -63,7 +48,7 @@ class Search extends React.Component {
     if (items.length === 0 && loading) {
       return (
          <Loading />
-      )
+      ) 
     } else if (items.length === 0 && !loading) {
       return (
         <div>

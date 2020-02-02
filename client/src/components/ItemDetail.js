@@ -1,5 +1,4 @@
 import React from "react"
-import {api} from "../api/api"
 import Loading from "./Loading"
 
 class ItemDetail extends React.Component {
@@ -15,10 +14,11 @@ class ItemDetail extends React.Component {
   }
 
   fetchItem = async () => {
-    const fetchItem = await fetch(
-      `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${this.props.match.params.id}&maxResults=50&key=${api.key}`
-    )
-    const item = await fetchItem.json()
+    const { id } = this.props.match.params
+    const response = await fetch(`/itemdetail/${id}`)
+    const item = await response.json()
+    
+    console.log(item)
     if (!item.error) {
       this.setState({
         item: item.items,
