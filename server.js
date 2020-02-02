@@ -1,6 +1,7 @@
 const express = require("express")
 const morgan = require("morgan")
 const dotenv = require("dotenv")
+const path = require("path")
 
 // Load env config
 dotenv.config()
@@ -20,10 +21,12 @@ app.use("/search", require("./routes/search"))
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static(__dirname + "/build/"))
+  app.use(express.static("client/build"))
 
   // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/build/index.html"))
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  })
 }
 
 const port = process.env.PORT || 5000
