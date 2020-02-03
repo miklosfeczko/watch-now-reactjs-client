@@ -42,9 +42,9 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/Search/" exact render={() => <Redirect to="/" />} />
-            <Route path="/Search/:searchTerm" exact component={Search} />
+            <Route path="/Search/:search" exact component={Search} />
             <Route
-              path="/Search/:searchTerm/:id"
+              path="/Search/:search/:id"
               exact
               component={ItemDetail}
             />

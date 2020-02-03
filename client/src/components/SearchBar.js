@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [search, setSearch] = useState("")
 
   return (
     <div className="search-bar__container">
@@ -12,13 +12,13 @@ const SearchBar = () => {
           className="search-bar__input"
           placeholder="Search"
           aria-label="search"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          value={search}
+          onChange={e => setSearch(e.target.value)}
         />
 
         <Link
           to={{
-            pathname: `/Search/${searchTerm}`
+            pathname: `/Search/${search}`
           }}
         >
           <button type="submit">     
