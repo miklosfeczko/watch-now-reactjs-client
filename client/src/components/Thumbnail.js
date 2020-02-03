@@ -1,6 +1,7 @@
 import React from "react"
 
 const Thumbnail = ({thumbnailData, channelOrVideo}) => {
+console.log(channelOrVideo)
   return thumbnailData && thumbnailData.title ? (
     <React.Fragment>
         <div className="video__wrapper">

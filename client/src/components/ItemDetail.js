@@ -18,6 +18,7 @@ class ItemDetail extends React.Component {
     const response = await fetch(`/itemdetail/${id}`)
     const item = await response.json()
     
+    console.log(item)
     if (!item.error) {
       this.setState({
         item: item.items,

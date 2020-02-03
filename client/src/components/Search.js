@@ -19,11 +19,11 @@ class Search extends React.Component {
       items: [],
       loading: true
     })  
-      
-      const { search } = this.props.match.params
-      const response = await fetch(`/search/${search}`)
+      const { searchTerm } = this.props.match.params
+      const response = await fetch(`/search/${searchTerm}`)
       const item = await response.json()
-      
+      console.log(searchTerm)
+      console.log(item)
       if (response.ok && !item.error) {
         this.setState({
           items: item.items,
@@ -35,14 +35,15 @@ class Search extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.match.params.search !== this.props.match.params.search) {
+    if (prevProps.match.params.searchTerm !== this.props.match.params.searchTerm) {
       this.fetchItems()
     } else return
   }
 
   render() {
     const { items, loading } = this.state
-    const { search } = this.props.match.params
+    const { searchTerm } = this.props.match.params
+    console.log(items)
 
     if (items.length === 0 && loading) {
       return (
@@ -61,7 +62,7 @@ class Search extends React.Component {
         {items.map(item => (
           <div key={item.etag} className="firstItemBorders">
             <Link
-              to={`/Search/${search}/${item.id.videoId}`}
+              to={`/search/${searchTerm}/${item.id.videoId}`}
               className="linkCustom"
             >
               <Thumbnail
