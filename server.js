@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/itemdetail", require("./routes/itemdetail"))
 
 // search route
-app.use("/search", require("./routes/search"))
+app.use("/search-fetching", require("./routes/search"))
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder

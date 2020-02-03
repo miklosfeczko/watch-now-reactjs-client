@@ -20,7 +20,7 @@ class Search extends React.Component {
       loading: true
     })  
       const { searchTerm } = this.props.match.params
-      const response = await fetch(`/search/${searchTerm}`)
+      const response = await fetch(`/search-fetching/${searchTerm}`)
       const item = await response.json()
       console.log(searchTerm)
       console.log(item)
