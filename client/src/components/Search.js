@@ -61,7 +61,7 @@ class Search extends React.Component {
         {items.map(item => (
           <div key={item.etag} className="firstItemBorders">
             <Link
-              to={`/search/${search}/${item.id.videoId}`}
+              to={`/Search/${search}/${item.id.videoId}`}
               className="linkCustom"
             >
               <Thumbnail
