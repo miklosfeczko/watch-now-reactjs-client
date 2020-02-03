@@ -44,19 +44,28 @@ class Search extends React.Component {
     const { items, loading } = this.state
     const { searchTerm } = this.props.match.params
     console.log(items)
+  
+    const str = searchTerm.replace(/\s/g, "")
+    console.log(str)
 
-    if (items.length === 0 && loading) {
+    if (items.length === 0 && loading && str !== '') {
       return (
          <Loading />
       ) 
     } else if (items.length === 0 && !loading) {
       return (
         <div>
-          No matches bruv.
+          No matches.
+        </div>
+      )
+    } else if (str === '') {
+      return (
+        <div>
+          Enter a correct term.
         </div>
       )
     }
-
+    
     return (
       <div>
         {items.map(item => (
