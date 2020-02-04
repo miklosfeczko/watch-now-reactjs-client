@@ -16,3 +16,4 @@ Use the search bar to type in a search term then hit Enter or click the search i
 - React Router
 - YouTube API
 - SCSS
+- Node.js / Express
