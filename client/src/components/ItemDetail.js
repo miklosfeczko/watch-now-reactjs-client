@@ -18,7 +18,6 @@ class ItemDetail extends React.Component {
     const response = await fetch(`/itemdetail/${id}`)
     const item = await response.json()
     
-    console.log(item)
     if (!item.error) {
       this.setState({
         item: item.items,
@@ -58,8 +57,23 @@ class ItemDetail extends React.Component {
   const { loading, item, error, commentError } = this.state  
   return (
     <React.Fragment>
-      {error ? error : videoBlock}
-      { commentError ? commentError : null}
+      {error ? (
+        <p style={{ textAlign: "center" }}>
+          {error}
+          <br />
+          The requested link is invalid or you may have clicked on a channel
+          instead of a video.
+        </p>
+      ) : (
+        videoBlock
+      )}
+      {commentError ? (
+        <p style={{ textAlign: "center" }}>
+          {commentError}
+          <br />
+          Comments have been disabled on this video.
+        </p>
+      ) : null}
       {loading ? (
         <Loading />
       ) : (

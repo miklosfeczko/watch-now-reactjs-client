@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 
+// GLOBAL VARIABLES COLORS
+$grey: #333;
+$lightgrey: #999;
+$darkmodebg: #1a1919;
+$lightmodenavbg: steelblue;
+$darkmodenavbg: #1b2938;
+$darkmodeborder: #303030;
+$lightmodeborder: #d1d1d1;
+$lightmodecomment: #1f1f1f;
+
 // GLOBAL RESET
 body {
   padding: 0;
@@ -30,19 +40,19 @@ main {
 // DARK AND LIGHT MODES
 .light-mode {
   background-color: #fff;
-  color: #333;
+  color: $grey;
   transition: all 1s;
   /* */
   display: flex;
   min-height: 100vh;
   flex-direction: column;
   .linkCustom {
-  color: #333;
+  color: $grey;
   text-decoration: none;
   }
   .video__details {
     article {
-      color: #3a3a3a;
+      color: $grey;
       h1 {
         color: black;
       }
@@ -54,30 +64,30 @@ main {
     }
   }
   .comment {
-    color: #1f1f1f;
+    color: $lightmodecomment;
   }
   .firstItemBorders:first-child {
-    border-top: 1px solid #d1d1d1;
-    border-bottom: 1px solid #d1d1d1;
+    border-top: 1px solid $lightmodeborder;
+    border-bottom: 1px solid $lightmodeborder;
   }
   .search-bar {
     ::placeholder {
-      color: #333;
+      color: $grey;
       opacity: 1;
     }
-    background-color: steelblue;
+    background-color: $lightmodenavbg;
     &__input {
-      color: #333;
+      color: $grey;
     }
     &__submit {
-      color: #333;
+      color: $grey;
     }
   }
 }
 
 .dark-mode {
-  background-color: #1a1919;
-  color: #999;
+  background-color: $darkmodebg;
+  color: $lightgrey;
   transition: all 1s;
   /* */
   display: flex;
@@ -88,20 +98,20 @@ main {
   text-decoration: none;
   }
   .firstItemBorders:first-child {
-    border-top: 1px solid #303030;
-    border-bottom: 1px solid #303030;
+    border-top: 1px solid $darkmodeborder;
+    border-bottom: 1px solid $darkmodeborder;
   }
 }
 
 .dark-mode nav {
-  background-color: #1b2938;
+  background-color: $darkmodenavbg;
 }
 
 // NAVBAR
 nav {
   width: calc(100%);
   display: flex;
-  background-color: steelblue;
+  background-color: $lightmodenavbg;
   padding: 20px 0px;
   justify-content: space-between;
   h1 {
@@ -176,21 +186,21 @@ input[type="checkbox"].checkbox + label {
 // SEARCH BAR 
 .search-bar {
   ::placeholder {
-      color: #999;
+      color: $lightgrey;
       opacity: 1;
   }
   margin: 0 auto;
   max-width: 25vw;
-  //border: 1px solid #999;
+  //border: 1px solid $lightgrey;
   display: flex;
   justify-content: center;
-  background-color: #1b2938;
+  background-color: $darkmodenavbg;
   &__input {
     border: none;
     background-color: transparent;
     flex-grow: 1;
     font-size: 1rem;
-    color: #999;
+    color: $lightgrey;
     padding: 0 0.5rem;
   }
   button {
@@ -198,7 +208,7 @@ input[type="checkbox"].checkbox + label {
     background-color: transparent;
   }
   &__submit {
-    color: steelblue;
+    color: $lightmodenavbg;
     border: none;
     font-size: 1.5rem;
     margin-left: auto;
@@ -242,15 +252,16 @@ input[type="checkbox"].checkbox + label {
 .video__details {
   height: 10rem;
   //background-color: cyan;
-  width: 100%;
   max-width: 70%;
   padding: 1rem;
   padding-left: 0;
   flex: 1 1 70%; 
   article {
+    //background-color: yellow;
+    max-width: 770px;
     text-decoration: none;
     text-transform: none;
-    color: #999;
+    color: $lightgrey;
     h1 {
     font-size: 1.25rem;
     font-weight: 200;
@@ -352,13 +363,14 @@ time {
 @media only screen and (max-width: 1280px) {
   .video__wrapper {
     flex-direction: column;
+    max-width: 500px;
   }
   .image__wrapper {
     max-width: 100%;
     justify-content: center;
   }
   .video__details {
-    max-width: 70%;
+    max-width: 71.5%;
     border: none;
   }
   .search-bar {
@@ -367,15 +379,15 @@ time {
 }
 
 @media only screen and (max-width: 760px) {
-  .video__wrapper {
-    flex-direction: column;
-  }
   .image__wrapper {
     max-width: 100%;
   } 
 }
 
 @media only screen and (max-width: 350px) {
+  .video__details {
+    max-width: 70%;
+  }
   .module-comment-avatar img {
     display: none;
   }

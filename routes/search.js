@@ -6,8 +6,7 @@ const fetch = require("node-fetch")
 router.get("/:search", async (req, res) => {
   try {
     const { search } = req.params
-    console.log(req.params)
-    console.log(req.query)
+   
     const response = await fetch(
       `${process.env.YOUTUBE_API_URL_SEARCH}&q=${search}`
     )

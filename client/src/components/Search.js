@@ -22,8 +22,7 @@ class Search extends React.Component {
       const { searchTerm } = this.props.match.params
       const response = await fetch(`/search-fetching/${searchTerm}`)
       const item = await response.json()
-      console.log(searchTerm)
-      console.log(item)
+    
       if (response.ok && !item.error) {
         this.setState({
           items: item.items,
@@ -43,10 +42,8 @@ class Search extends React.Component {
   render() {
     const { items, loading } = this.state
     const { searchTerm } = this.props.match.params
-    console.log(items)
-  
+
     const str = searchTerm.replace(/\s/g, "")
-    console.log(str)
 
     if (items.length === 0 && loading && str !== '') {
       return (
@@ -54,15 +51,15 @@ class Search extends React.Component {
       ) 
     } else if (items.length === 0 && !loading) {
       return (
-        <div>
-          No matches.
-        </div>
+        <p style={{ textAlign: "center" }}>
+          No matches found.
+        </p>
       )
     } else if (str === '') {
       return (
-        <div>
+        <p style={{ textAlign: "center" }}>
           Enter a correct term.
-        </div>
+        </p>
       )
     }
     
