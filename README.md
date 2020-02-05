@@ -1,6 +1,6 @@
 # Watch Now
 
-## [Check live demo!](https://mbr-mf.netlify.com/)
+## [Check live demo!](https://watch-now-mf.herokuapp.com)
 
 ![Thumbnail](watch-now.jpg)
 
