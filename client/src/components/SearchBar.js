@@ -9,6 +9,7 @@ const SearchBar = () => {
       <form className="search-bar">
         <input
           type="text"
+          spellCheck="false"
           className="search-bar__input"
           placeholder="Search"
           aria-label="search"
@@ -21,11 +22,11 @@ const SearchBar = () => {
             pathname: `/Search/${searchTerm}`
           }}
         >
-          <button type="submit">     
-              <i
-                className="search-bar__submit fas fa-search"
-                aria-label="submit search"
-              ></i>
+          <button type="submit">
+            <i
+              className="search-bar__submit fas fa-search"
+              aria-label="submit search"
+            ></i>
           </button>
         </Link>
       </form>
